@@ -15,10 +15,10 @@ public class HW_1 {
             Thread.sleep(5000);
             String text = driver.findElement(selectors[i]).getText();
             System.out.println(text);
-            text = text.substring(3);
-            text = text.replaceAll("\\(", "");
-            text = text.replaceAll("\\)", "");
-            text = text.replaceAll(" ", "");
+            text = text.substring(3)
+                    .replaceAll("\\(", "")
+                    .replaceAll("\\)", "")
+                    .replaceAll(" ", "");
             System.out.println(text);
             driver.quit();
 
