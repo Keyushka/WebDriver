@@ -16,7 +16,7 @@ public class HW_1 {
             String text = driver.findElement(selectors[i]).getText();
             System.out.println(text);
             text = text.substring(3)
-                    .replaceAll("\\(", "")
+                    .replaceAll("\\(", "") // .replace("(", "")
                     .replaceAll("\\)", "")
                     .replaceAll(" ", "");
             System.out.println(text);
