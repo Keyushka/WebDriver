@@ -1,18 +1,25 @@
 package test.java.tests.PO;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+
 public class HomePage extends BasePage{
+    Logger logger = LogManager.getLogger(HomePage.class);
 
     public HomePage(WebDriver driver){
         super(driver); // используется родительский драйвер
     }
 
     public HomePage open(){
+        logger.info("Home page is opened");
+        logger.debug("Home page is opened  jkfgjkfgdf gdhdgjn kn k nk gerg");
         driver.get("http://iteaua-develop.demo.gns-it.com/about-itea/");
         WebElement spinner = driver.findElement(By.id("preload-it"));
         wait.until(ExpectedConditions.visibilityOf(spinner));
@@ -21,6 +28,7 @@ public class HomePage extends BasePage{
     }
 
     public HomePage selectLanguage(String lang){
+        logger.info("Language is checked to " + lang);
         WebElement uaLang = driver.findElement(By.xpath("(//a[@hreflang='"+ lang +"'])[1]"));
         wait.until(ExpectedConditions.elementToBeClickable(uaLang));
         uaLang.click();
