@@ -60,9 +60,7 @@ public class HW_3 extends BaseTest{
                 "Java programming", "Python", "Data Science/Machine Learning", "C# /.NET development",
                 "C++", "Game Development", "DEVOPS", "Digital Marketing", "Управление персоналом",
                 "Управление проектами", "Менеджмент", "Кибербезопасность", "Mobile development",
-                "Видеомонтаж", "Cisco", "Go development",};
-
-
+                "Видеомонтаж", "Cisco", "Go development"};
         List<WebElement> courseElements = driver.findElements(By.xpath("//*[@id='course']/div/div/h2"));
         wait.until(ExpectedConditions.visibilityOfAllElements(courseElements));
         List<String> courseActual = new ArrayList<String>();
@@ -86,8 +84,20 @@ public class HW_3 extends BaseTest{
                 .openMenuDaytimeCourses()
                 .openCoursesFromDaytime();
 
-        Thread.sleep(5000);
-        String fgfd[] = {};
+        String[] courseExpected = {"Microsoft", "Cisco", "UNIX / Linux",
+                "Oracle", "ITIL", "Программирование", "Управление проектами",
+                "Пользовательские курсы", "Vmware", "Teradata", "EC-Council"};
+        List<WebElement> courseElements = driver.findElements(By.xpath("//*[@id='course']/div/div/h2"));
+        wait.until(ExpectedConditions.visibilityOfAllElements(courseElements));
+        List<String> courseActual = new ArrayList<String>();
+
+        for(WebElement el: courseElements) {
+            courseActual.add(el.getText());
+        }
+        for(String course: courseExpected) {
+            boolean isContains = courseActual.contains(course);
+            assertTrue(isContains, String.format("Expected language '%s' to be present on the page", course));
+        }
 
     }
 
