@@ -12,12 +12,12 @@ public class HelloTest extends BaseTest{
 
 
     @Test
-    public void checkStyle() throws InterruptedException {
+    public void checkStyle() {
         driver.get("http://iteaua-develop.demo.gns-it.com/");
-        WebElement uaLan = driver.findElement(By.xpath("(//a[text() = 'UA'])[1]"));
+        /*WebElement uaLan = driver.findElement(By.xpath("(//a[text() = 'UA'])[1]"));
         WebElement ruLan = driver.findElement(By.xpath("(//a[text() = 'RU'])[1]"));
         WebElement enLan = driver.findElement(By.xpath("(//a[text() = 'EN'])[1]"));
-        /*waitForPresence.until(ExpectedConditions.or(
+        wait.until(ExpectedConditions.or(
                 ExpectedConditions.visibilityOf(uaLan),
                 ExpectedConditions.visibilityOf(ruLan),
                 ExpectedConditions.visibilityOf(enLan)

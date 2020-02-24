@@ -19,7 +19,7 @@ public class BaseTest {
         // гарантировано инициализируем драйвер перед каждым методом
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         //  неявное ожидание у этого драйвера будет 15 секунд
-        wait = new WebDriverWait(driver, 15); // создали вейтер - явное ожидание
+        wait = new WebDriverWait(driver, 30); // создали вейтер - явное ожидание
     }
 
     @AfterMethod

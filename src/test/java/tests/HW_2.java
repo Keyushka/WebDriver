@@ -63,7 +63,7 @@ public class HW_2 {
 
         WebElement phoneInput = driver.findElement(By.xpath("//input[@name='phone']"));
         waitForPresence.until(ExpectedConditions.attributeContains(phoneInput, "style", "border-color: red;"));
-        String actualPhoneStyle = nameInput.getAttribute("style");
+        String actualPhoneStyle = phoneInput.getAttribute("style");
 
         String expectedValue = "border-color: red;";
         assertEquals(expectedValue, actualNameStyle, String.format("Expected %s to be equal %s", actualNameStyle, expectedValue));
