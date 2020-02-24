@@ -6,8 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomePage extends BasePage{
@@ -75,5 +76,19 @@ public class HomePage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(CoursesFromEvening));
         CoursesFromEvening.click();
         return this;
+    }
+
+    public List<String> getListCourses() {
+        List<WebElement> courseElements = driver.findElements(By.xpath("//*[@id='course']/div/div/h2"));
+        wait.until(ExpectedConditions.visibilityOfAllElements(courseElements));
+        List<String> courseActual = new ArrayList<String>();
+        // выводим в консоль список всех эелемнтов - названия курсов (текст)
+        /*for(WebElement el: courseElements) {
+            System.out.print("\"" + el.getText() + "\"" + ", ");
+        }*/
+        for(WebElement el: courseElements) {
+            courseActual.add(el.getText());
+        }
+        return courseActual;
     }
 }

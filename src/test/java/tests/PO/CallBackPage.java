@@ -7,35 +7,35 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class CallBack extends BasePage{
-    Logger logger = LogManager.getLogger(CallBack.class);
+public class CallBackPage extends BasePage{
+    Logger logger = LogManager.getLogger(CallBackPage.class);
 
-    public CallBack(WebDriver driver){
+    public CallBackPage(WebDriver driver){
         super(driver);
     }
 
-    public CallBack open(){
+    public CallBackPage open(){
         WebElement callBack = driver.findElement(By.className("callback-btn"));
         wait.until(ExpectedConditions.elementToBeClickable(callBack));
         callBack.click();
         return this;
     }
 
-    public CallBack setName(String name){
+    public CallBackPage setName(String name){
         WebElement nameInput = driver.findElement(By.xpath("//input[@name='name']"));
         wait.until(ExpectedConditions.elementToBeClickable(nameInput));
         nameInput.sendKeys(name);
         return this;
     }
 
-    public CallBack setPhone(String phone){
+    public CallBackPage setPhone(String phone){
         WebElement phoneInput = driver.findElement(By.xpath("//input[@name='phone']"));
         wait.until(ExpectedConditions.elementToBeClickable(phoneInput));
         phoneInput.sendKeys(phone);
         return this;
     }
 
-    public CallBack submitBtn(){
+    public CallBackPage submitBtn(){
         WebElement submitBtn = driver.findElement(By.xpath("//div[@class='b-header-contacte-phone-block']//input[@type='submit']"));
         wait.until(ExpectedConditions.elementToBeClickable(submitBtn));
         submitBtn.click();
