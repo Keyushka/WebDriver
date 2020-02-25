@@ -1,27 +1,26 @@
 package test.java.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import test.java.tests.PO.CallBackPage;
+import test.java.tests.PO.CoursesPage;
 import test.java.tests.PO.HomePage;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class HW_3 extends BaseTest{
     HomePage homePage;
     CallBackPage callBackPage;
+    CoursesPage coursesPage;
 
     @BeforeMethod
     public void PageLoad() {
         homePage = new HomePage(driver);
         callBackPage = new CallBackPage(driver);
+        coursesPage = new CoursesPage(driver);
     }
 
     @Test
@@ -85,5 +84,50 @@ public class HW_3 extends BaseTest{
         }
 
     }
+
+    @Test (dataProvider = "providerEveningCourses")
+    public void ListCoursesSetLocation(String courseName){
+        homePage.open()
+                .openMenuEveningCourses()
+                .openCoursesFromEvening()
+                .openCoursePage(courseName);
+        coursesPage.clickBtnPay();
+        assertTrue(coursesPage.checkInLocation("Берестейская"));
+        assertFalse(coursesPage.checkInLocation("Позняки"));
+        assertFalse(coursesPage.checkInLocation("ВДНХ"));
+        assertFalse(coursesPage.selectedCheckbox());
+    }
+
+
+    @DataProvider
+    public Object[][] providerEveningCourses() {
+        return new Object[][]{
+                {"Тестирование"},
+                {"Frontend development"}/*,
+                {"JS development"},
+                {"Веб-дизайн"},
+                {"PHP"},
+                {"Программирование под IOS"},
+                {"Программирование под Android"},
+                {"Java programming"},
+                {"Python"},
+                {"Data Science/Machine Learning"},
+                {"C# /.NET development"},
+                {"C++"},
+                {"Game Development"},
+                {"DEVOPS"},
+                {"Digital Marketing"},
+                {"Управление персоналом"},
+                {"Управление проектами"},
+                {"Менеджмент"},
+                {"Кибербезопасность"},
+                {"Mobile development"},
+                {"Видеомонтаж"},
+                {"Cisco"},
+                {"Go development"}*/
+
+        };
+    }
+
 
 }

@@ -20,11 +20,11 @@ public class HomePage extends BasePage{
 
     public HomePage open(){
         logger.info("Home page is opened");
-        logger.debug("Home page is opened  jkfgjkfgdf gdhdgjn kn k nk gerg");
         driver.get("http://iteaua-develop.demo.gns-it.com/");
         WebElement spinner = driver.findElement(By.id("preload-it"));
         wait.until(ExpectedConditions.visibilityOf(spinner));
         wait.until(ExpectedConditions.invisibilityOf(spinner));
+        logger.debug("Home page is opened and spinner is loaded");
         return this; // return HomePage;
     }
 
@@ -40,6 +40,7 @@ public class HomePage extends BasePage{
         WebElement aboutBtn = driver.findElement(By.xpath("//a[(contains(@href, 'about_itea')) and @class='parent']"));
         wait.until(ExpectedConditions.visibilityOf(aboutBtn));
         aboutBtn.click();
+        logger.info("About page is opened");
         return this;
     }
 
@@ -47,6 +48,7 @@ public class HomePage extends BasePage{
         WebElement vacancies = driver.findElement(By.xpath("//li[@id='menu-item-15362']/a"));
         wait.until(ExpectedConditions.elementToBeClickable(vacancies));
         vacancies.click();
+        logger.info("Vacancy page is opened");
         return this;
     }
 
@@ -54,6 +56,7 @@ public class HomePage extends BasePage{
         WebElement eveningCourses = driver.findElement(By.xpath("//*[@id='menu-item-411']/a"));
         wait.until(ExpectedConditions.visibilityOf(eveningCourses));
         eveningCourses.click();
+        logger.debug("Clicking on the evening course menu");
         return this;
     }
 
@@ -61,6 +64,7 @@ public class HomePage extends BasePage{
         WebElement CoursesFromEvening = driver.findElement(By.xpath("//*[@id='menu-item-7880']/a"));
         wait.until(ExpectedConditions.visibilityOf(CoursesFromEvening));
         CoursesFromEvening.click();
+        logger.info("Evening courses is opened");
         return this;
     }
 
@@ -68,6 +72,7 @@ public class HomePage extends BasePage{
         WebElement eveningCourses = driver.findElement(By.xpath("//*[@id='menu-item-7901']/a"));
         wait.until(ExpectedConditions.visibilityOf(eveningCourses));
         eveningCourses.click();
+        logger.debug("Clicking on the daytime course menu");
         return this;
     }
 
@@ -75,11 +80,13 @@ public class HomePage extends BasePage{
         WebElement CoursesFromEvening = driver.findElement(By.xpath("//*[@id='menu-item-412']/a"));
         wait.until(ExpectedConditions.visibilityOf(CoursesFromEvening));
         CoursesFromEvening.click();
+        logger.info("Daytime courses is opened");
         return this;
     }
 
     public List<String> getListCourses() {
         List<WebElement> courseElements = driver.findElements(By.xpath("//*[@id='course']/div/div/h2"));
+        logger.debug("Expecting the visibility of the list of course items");
         wait.until(ExpectedConditions.visibilityOfAllElements(courseElements));
         List<String> courseActual = new ArrayList<String>();
         // выводим в консоль список всех эелемнтов - названия курсов (текст)
@@ -89,6 +96,16 @@ public class HomePage extends BasePage{
         for(WebElement el: courseElements) {
             courseActual.add(el.getText());
         }
+        logger.info("Return the text of elements from the list of courses");
         return courseActual;
     }
+
+    public HomePage openCoursePage(String courseName) {
+            WebElement eveningCourses = driver.findElement(By.xpath("//h2[contains(text(), '" + courseName + "')]/.."));
+            wait.until(ExpectedConditions.elementToBeClickable(eveningCourses));
+            eveningCourses.click();
+            logger.info("Page of course - '" + courseName + "' is opened");
+            return this;
+        }
+
 }
