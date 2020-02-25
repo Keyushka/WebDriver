@@ -103,7 +103,7 @@ public class HW_3 extends BaseTest{
     public Object[][] providerEveningCourses() {
         return new Object[][]{
                 {"Тестирование"},
-                {"Frontend development"}/*,
+                {"Frontend development"},
                 {"JS development"},
                 {"Веб-дизайн"},
                 {"PHP"},
@@ -124,7 +124,7 @@ public class HW_3 extends BaseTest{
                 {"Mobile development"},
                 {"Видеомонтаж"},
                 {"Cisco"},
-                {"Go development"}*/
+                {"Go development"}
 
         };
     }
