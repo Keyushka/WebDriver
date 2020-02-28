@@ -9,8 +9,7 @@ pipeline {
         }
         stage('Unit tests') {
             steps{
-                bat 'mvn clean -DsuiteXmlFile=unittestng.xml test'
-                // for Linux: sh mvn clean -DsuiteXmlFile=unittestng.xml test'
+                bat 'mvn clean -DsuiteXmlFile=unittestng.xml test' // for Linux: sh mvn clean -DsuiteXmlFile=unittestng.xml test'
             }
         }
         stage('UI tests') {
