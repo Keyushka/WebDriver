@@ -6,7 +6,11 @@
     </listeners>
     <test name="A test">
         <classes>
-            <class name="test.java.tests.ForPO"/>
+            <class name="test.java.tests.ForPO">
+                <methods>
+                    <include name="anyTest"/>
+                </methods>
+            </class>
             <class name="test.java.tests.Del"/>
         </classes>
     </test>
