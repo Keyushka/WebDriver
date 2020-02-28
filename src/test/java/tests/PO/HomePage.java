@@ -1,11 +1,13 @@
 package test.java.tests.PO;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import test.java.utils.PropertyLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +20,10 @@ public class HomePage extends BasePage{
         super(driver); // используется родительский драйвер
     }
 
+    @Step("Open ome page")
     public HomePage open(){
         logger.info("Home page is opened");
-        driver.get("http://iteaua-develop.demo.gns-it.com/");
+        driver.get(PropertyLoader.getProperty("url"));
         WebElement spinner = driver.findElement(By.id("preload-it"));
         wait.until(ExpectedConditions.visibilityOf(spinner));
         wait.until(ExpectedConditions.invisibilityOf(spinner));
@@ -28,6 +31,7 @@ public class HomePage extends BasePage{
         return this; // return HomePage;
     }
 
+    @Step("Select language {lang}")
     public HomePage selectLanguage(String lang){
         logger.info("Language is checked to " + lang);
         WebElement uaLang = driver.findElement(By.xpath("(//a[@hreflang='"+ lang +"'])[1]"));
@@ -36,6 +40,7 @@ public class HomePage extends BasePage{
         return this;
     }
 
+    @Step("Open page About")
     public  HomePage openAbout(){
         WebElement aboutBtn = driver.findElement(By.xpath("//a[(contains(@href, 'about_itea')) and @class='parent']"));
         wait.until(ExpectedConditions.visibilityOf(aboutBtn));
@@ -44,6 +49,7 @@ public class HomePage extends BasePage{
         return this;
     }
 
+    @Step("Open page Vacancy")
     public HomePage openVacancies(){
         WebElement vacancies = driver.findElement(By.xpath("//li[@id='menu-item-15362']/a"));
         wait.until(ExpectedConditions.elementToBeClickable(vacancies));
@@ -52,6 +58,7 @@ public class HomePage extends BasePage{
         return this;
     }
 
+    @Step("Click on menu from Evening Courses")
     public HomePage openMenuEveningCourses(){
         WebElement eveningCourses = driver.findElement(By.xpath("//*[@id='menu-item-411']/a"));
         wait.until(ExpectedConditions.visibilityOf(eveningCourses));
@@ -60,6 +67,7 @@ public class HomePage extends BasePage{
         return this;
     }
 
+    @Step("Open courses from Evening Courses")
     public HomePage openCoursesFromEvening(){
         WebElement CoursesFromEvening = driver.findElement(By.xpath("//*[@id='menu-item-7880']/a"));
         wait.until(ExpectedConditions.visibilityOf(CoursesFromEvening));

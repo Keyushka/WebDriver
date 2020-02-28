@@ -4,3 +4,7 @@ WebDriver.iml
 *iml
 *.exe
 logs/
+screenshots/
+config.properties
+allure-results/
+allure-report/
