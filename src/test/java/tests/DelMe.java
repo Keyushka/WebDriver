@@ -1,6 +1,5 @@
 package test.java.tests;
 
-import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;

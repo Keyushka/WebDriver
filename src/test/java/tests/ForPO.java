@@ -60,7 +60,7 @@ public class ForPO extends BaseTest{
         /*int arr[] = {2,4,6,8,1,1};
         List<String> a = new ArrayList<String>();
         List<Integer> a = new ArrayList<Integer>();*/
-        String langExpected[] = {"RU", "UA", "EN"};
+        String[] langExpected = {"RU", "UA", "EN"};
 
         homePage.open();
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//a[text() = 'UA'])[1]"))));
