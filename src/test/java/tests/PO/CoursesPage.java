@@ -37,4 +37,22 @@ public class CoursesPage extends BasePage {
         logger.info("Checked checkbox from Privacy Policy");
         return privacyPolicy.isSelected();
     }
+
+    public String fillInInfo(String name, String email, String phone){
+        logger.info("Course entry form is opened");
+        driver.findElement(By.id("name")).sendKeys(name);
+        driver.findElement(By.id("email")).sendKeys(email);
+        driver.findElement(By.id("phone")).sendKeys(phone);
+        logger.debug("All form inputs are successfully filled");
+        WebElement checkbox = driver.findElement(By.xpath("//div[@class='privacy-policy__wrapper']//span"));
+        wait.until(ExpectedConditions.elementToBeClickable(checkbox));
+        checkbox.click();
+        WebElement submitBtn = driver.findElement(By.xpath("//input[@class='submit ']"));
+        wait.until(ExpectedConditions.elementToBeClickable(submitBtn));
+        submitBtn.click();
+        logger.debug("Sign up button has been clicked");
+        WebElement thanksBlock = driver.findElement(By.xpath("//div[@class=\"container regDiv\"]//h1"));
+        wait.until(ExpectedConditions.visibilityOf(thanksBlock));
+        return thanksBlock.getText();
+    }
 }

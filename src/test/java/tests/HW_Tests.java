@@ -1,5 +1,8 @@
 package test.java.tests;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -11,7 +14,8 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-public class HW_3 extends BaseTest{
+@Epic("Site ITEA")
+public class HW_Tests extends BaseTest{
     HomePage homePage;
     CallBackPage callBackPage;
     CoursesPage coursesPage;
@@ -23,6 +27,8 @@ public class HW_3 extends BaseTest{
         coursesPage = new CoursesPage(driver);
     }
 
+    @Story("Fill out the callback form")
+    @Feature("Enter valid data")
     @Test
     public void TestPositive() {
         homePage.open();
@@ -36,6 +42,8 @@ public class HW_3 extends BaseTest{
         assertEquals(expectedMsg, actualThankMsg);
     }
 
+    @Story("Fill out the callback form")
+    @Feature("Leave the fields blank")
     @Test
     public void TestNegative() {
         homePage.open();
@@ -48,6 +56,8 @@ public class HW_3 extends BaseTest{
         assertEquals(expectedValue, actualPhoneStyle, String.format("Expected %s to be equal %s", actualPhoneStyle, expectedValue));
     }
 
+    @Story("All courses")
+    @Feature("Display all evening courses")
     @Test
     public void EveningCourses() {
         homePage.open()
@@ -68,6 +78,8 @@ public class HW_3 extends BaseTest{
         }
     }
 
+    @Story("All courses")
+    @Feature("Display all daytime courses")
     @Test
     public void DaytimeCourses() {
         homePage.open()
@@ -85,6 +97,8 @@ public class HW_3 extends BaseTest{
 
     }
 
+    @Story("All courses")
+    @Feature("Check all courses for the selected location and privacy policy")
     @Test (dataProvider = "providerEveningCourses")
     public void ListCoursesSetLocation(String courseName){
         homePage.open()
@@ -129,5 +143,27 @@ public class HW_3 extends BaseTest{
         };
     }
 
+    @Story("All courses")
+    @Feature("Buying an evening course - random check")
+    @Test
+    public void RandomBuyEveningCourses() {
+        String[] courses = {"Тестирование", "Frontend development", "JS development",
+                "Веб-дизайн", "PHP", "Программирование под IOS", "Программирование под Android",
+                "Java programming", "Python", "Data Science/Machine Learning", "C# /.NET development",
+                "C++", "Game Development", "DEVOPS", "Digital Marketing", "Управление персоналом",
+                "Управление проектами", "Менеджмент", "Кибербезопасность", "Mobile development",
+                "Видеомонтаж", "Cisco", "Go development",};
+        int rand = (int) (Math.random() * courses.length);
+        homePage.open()
+                .openMenuEveningCourses()
+                .openCoursesFromEvening()
+                .openCoursePage(courses[rand]);
+        coursesPage.clickBtnPay();
+        String actualMsg = coursesPage.fillInInfo("Irina", "test_irina@gmail.com", "1234567890");
+        String expectedMsg = "Ваша заявка принята.\n" +
+                "Наш менеджер свяжется с вами в ближайшее время!";
+        assertEquals(expectedMsg, actualMsg, String.format("\n Expected:\n%s \n to be equal: \n%s\n\n", actualMsg, expectedMsg));
+
+    }
 
 }
